@@ -1,5 +1,4 @@
 #Solving a linear system of equations using the inverse matrix method and by transforming matrix to row echelon form.
-#Need to add ability for code to recognize dependent matricies as well as matricies with free parameters.
 
 #Start of code to solve using inverse matrix method.
 print("Solving system using inverse matrix method")
@@ -58,6 +57,23 @@ while i < dim:
     i = i + 1
 sol = sol.reshape(dim,1)
 
+#Combining the coefficients and the solutions to form the final matrix for row echelon form calculations.
+matt = np.append(A,sol,axis=1)
+
+#Testing the ranks of coefficient matrix and augmented matrix for inconsistent solution
+if np.linalg.matrix_rank(A) != np.linalg.matrix_rank(matt):
+    print("")
+    print("System is inconsistent.")
+    exit()
+
+#Testing for linear dependence by searching for nonzero determinant
+det = np.linalg.det(A)
+#print(det)
+if det >= -.00000001 and det <= .00000001:
+    print("")
+    print("System is linearly dependent with infinite solutions.")
+    exit()
+
 #printing the equations as well as their solutions.
 print("")
 print("Coefficients are:")
@@ -85,9 +101,6 @@ print("")
 #Solving using row echelon form
 print("Now solving matrix using row echelon form.")
 print("")
-
-#Combining the coefficients and the solutions to form the final matrix for row echelon form calculations.
-matt = np.append(A,sol,axis=1)
 
 #Below loops will form the matrix into row echelon form.
 i = 0
