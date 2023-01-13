@@ -17,7 +17,7 @@ A = np.empty((0,dim),float)
 print(A)
 
 #Ask user for coefficient values or random fill and then add them to the coefficient matrix
-print("Coefficient values for matrix:")
+print("Values for Coefficient matrix:")
 print("")
 
 ans = ""
@@ -39,6 +39,7 @@ A = A.reshape(dim,dim)
 #Now Input values for the solution matrix
 i = 0
 print("")
+print("Values for Solution Matrix:")
 
 ans = ""
 while ans not in ["Rand", "rand", "Own", "own"]:
